@@ -4,6 +4,7 @@ namespace Plugins\LaravelLocalStorage\Services;
 
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use Plugins\LaravelLocalStorage\Models\File as FileModel;
 
 class BusinessService

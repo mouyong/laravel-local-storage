@@ -21,15 +21,21 @@ class BusinessService
     
     public function upload(array $data): ?array
     {
-        /** @var \Illuminate\Http\UploadedFile $file */
+        /** @var \Illuminate\Http\UploadedFile|string $file */
         $file = $data['file'] ?? null;
         $path = $data['path'];
 
-        if (!($file instanceof UploadedFile)) {
+        if (!$file) {
             throw new \RuntimeException("请上传文件");
         }
 
-        $mimeType = File::mimeType($file->getRealPath());
+        $finfo = new \finfo(FILEINFO_MIME);
+        if (is_string($file)) {
+            $mimeType = $finfo->buffer($file);
+        } else {
+            $mimeType = $finfo->file($file);
+        }
+
         $type = match (true) {
             str_contains($mimeType, 'image/') => FileModel::TYPE_IMAGE,
             str_contains($mimeType, 'video/') => FileModel::TYPE_VIDEO,
@@ -40,10 +46,16 @@ class BusinessService
             $path = sprintf('public/%s', $path);
         }
 
-        $path = $this->getStorage()->put($path, $file);
+        $putResult = $this->getStorage()->put($path, $file);
+        if (!$putResult) {
+            info('保存文件失败', [
+                'path' => $path,
+                'data_path' => $data['path'],
+            ]);
+        }
 
         $result = [
-            'name' => $file->getClientOriginalName(),
+            'name' => is_string($file) ? basename($path) : $file->getClientOriginalName(),
             'type' => $type,
             'mime' => $mimeType,
             'path' => $path,

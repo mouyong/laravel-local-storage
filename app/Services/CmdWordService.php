@@ -18,7 +18,7 @@ class CmdWordService
     public function upload(array $data)
     {
         \validator()->validate($data, [
-            'file' => ['required', 'file'],
+            'file' => ['required'],
             'path' => ['required', 'string'],
         ]);
 

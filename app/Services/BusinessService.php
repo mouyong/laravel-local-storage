@@ -54,6 +54,10 @@ class BusinessService
             ]);
         }
 
+        if (!is_string($file)) {
+            $path = $putResult;
+        }
+
         $result = [
             'name' => is_string($file) ? basename($path) : $file->getClientOriginalName(),
             'type' => $type,

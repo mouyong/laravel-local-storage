@@ -8,5 +8,10 @@
     "version": "1.0.0",
     "scene": [],
     "accessPath": "",
-    "settingPath": null
+    "settingPath": null,
+    "providers": [
+        "Plugins\\LaravelLocalStorage\\Providers\\LaravelLocalStorageServiceProvider",
+        "Plugins\\LaravelLocalStorage\\Providers\\CmdWordServiceProvider"
+    ],
+    "aliases": []
 }

@@ -27,14 +27,5 @@
         "zhenmu/support": "dev-master",
         "mouyong/laravel-config": "dev-master",
         "fresns/cmd-word-manager": "^1.2"
-    },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "Plugins\\LaravelLocalStorage\\Providers\\LaravelLocalStorageServiceProvider",
-                "Plugins\\LaravelLocalStorage\\Providers\\CmdWordServiceProvider"
-            ],
-            "aliases": []
-        }
     }
 }

@@ -13,5 +13,6 @@
         "Plugins\\LaravelLocalStorage\\Providers\\LaravelLocalStorageServiceProvider",
         "Plugins\\LaravelLocalStorage\\Providers\\CmdWordServiceProvider"
     ],
+    "autoloadFiles": [],
     "aliases": []
 }
